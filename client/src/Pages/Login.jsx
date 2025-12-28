@@ -1,27 +1,39 @@
-import './Login.css'
+import "./Login.css";
 
 function Login() {
-
   return (
     <>
-    <div className='login'>
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLu7NUMFCS7GKcutI4sZPEA1sEpipcLifGng&s" alt="logo e antarsise" />
-        <form method='post'>
-            <div>
-                <label htmlFor="email">Email:</label>
-                <br />
-                <input type="email" id="email" name='email' placeholder='example@gmail.com'/>
-            </div>
-            <div>
-                <label htmlFor="password">Password:</label>
-                <br />
-                <input type="password" id='password' name='passowrd' placeholder='********'/>
-            </div>
-            <button type='submit'>Submit</button>
+      <div className="login">
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLu7NUMFCS7GKcutI4sZPEA1sEpipcLifGng&s"
+          alt="logo e antarsise"
+        />
+        <form method="post">
+          <div>
+            <label htmlFor="email">Email:</label>
+            <br />
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="example@gmail.com"
+            />
+          </div>
+          <div>
+            <label htmlFor="password">Password:</label>
+            <br />
+            <input
+              type="password"
+              id="password"
+              name="passowrd"
+              placeholder="********"
+            />
+          </div>
+          <button type="submit">Submit</button>
         </form>
-    </div>
+      </div>
     </>
-  )
+  );
 }
 
-export default Login
+export default Login;

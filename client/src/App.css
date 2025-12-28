@@ -1,1 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Bokor&family=Headland+One&family=Quicksand:wght@300..700&family=Quintessential&display=swap');
 
+body,
+html {
+  margin: 0;
+  padding: 0;
+  font-family: "Quicksand", sans-serif;
+  color: #2F2F2F;
+}

@@ -1,0 +1,425 @@
+const Lista = [
+  {
+    id: 0,
+    emri: "Ardit",
+    mbiemri: "Krasniqi",
+    kategoria: "4",
+    viti: "2026",
+    rryma: "800",
+    varrezat: "300",
+    ekstra: "1000",
+  },
+  {
+    id: 1,
+    emri: "Besart",
+    mbiemri: "Ismaili",
+    kategoria: "2",
+    viti: "2026",
+    rryma: "750",
+    varrezat: "260",
+    ekstra: "900",
+  },
+  {
+    id: 2,
+    emri: "Erion",
+    mbiemri: "Dreshaj",
+    kategoria: "1",
+    viti: "2026",
+    rryma: "820",
+    varrezat: "310",
+    ekstra: "700",
+  },
+  {
+    id: 3,
+    emri: "Granit",
+    mbiemri: "Morina",
+    kategoria: "3",
+    viti: "2026",
+    rryma: "790",
+    varrezat: "280",
+    ekstra: "650",
+  },
+  {
+    id: 4,
+    emri: "Altin",
+    mbiemri: "Berisha",
+    kategoria: "4",
+    viti: "2026",
+    rryma: "900",
+    varrezat: "350",
+    ekstra: "1200",
+  },
+  {
+    id: 5,
+    emri: "Luan",
+    mbiemri: "Gashi",
+    kategoria: "2",
+    viti: "2026",
+    rryma: "705",
+    varrezat: "240",
+    ekstra: "500",
+  },
+  {
+    id: 6,
+    emri: "Valon",
+    mbiemri: "Hoxha",
+    kategoria: "1",
+    viti: "2026",
+    rryma: "860",
+    varrezat: "295",
+    ekstra: "1100",
+  },
+  {
+    id: 7,
+    emri: "Elton",
+    mbiemri: "Rexhepi",
+    kategoria: "3",
+    viti: "2026",
+    rryma: "780",
+    varrezat: "270",
+    ekstra: "980",
+  },
+  {
+    id: 8,
+    emri: "Arlind",
+    mbiemri: "Shabani",
+    kategoria: "4",
+    viti: "2026",
+    rryma: "820",
+    varrezat: "330",
+    ekstra: "1300",
+  },
+  {
+    id: 9,
+    emri: "Blendi",
+    mbiemri: "Tahiri",
+    kategoria: "2",
+    viti: "2026",
+    rryma: "760",
+    varrezat: "250",
+    ekstra: "600",
+  },
+  {
+    id: 10,
+    emri: "Arben",
+    mbiemri: "Mehmeti",
+    kategoria: "1",
+    viti: "2026",
+    rryma: "880",
+    varrezat: "340",
+    ekstra: "1400",
+  },
+  {
+    id: 11,
+    emri: "Mentor",
+    mbiemri: "Hasani",
+    kategoria: "3",
+    viti: "2026",
+    rryma: "770",
+    varrezat: "260",
+    ekstra: "950",
+  },
+  {
+    id: 12,
+    emri: "Arsim",
+    mbiemri: "Zeneli",
+    kategoria: "2",
+    viti: "2026",
+    rryma: "810",
+    varrezat: "300",
+    ekstra: "1150",
+  },
+  {
+    id: 13,
+    emri: "Fisnik",
+    mbiemri: "Jakupi",
+    kategoria: "1",
+    viti: "2026",
+    rryma: "860",
+    varrezat: "290",
+    ekstra: "700",
+  },
+  {
+    id: 14,
+    emri: "Ilir",
+    mbiemri: "Beqiri",
+    kategoria: "4",
+    viti: "2026",
+    rryma: "900",
+    varrezat: "350",
+    ekstra: "1300",
+  },
+  {
+    id: 15,
+    emri: "Kreshnik",
+    mbiemri: "Rama",
+    kategoria: "2",
+    viti: "2026",
+    rryma: "740",
+    varrezat: "255",
+    ekstra: "820",
+  },
+  {
+    id: 16,
+    emri: "Ardian",
+    mbiemri: "Osmani",
+    kategoria: "3",
+    viti: "2026",
+    rryma: "790",
+    varrezat: "275",
+    ekstra: "910",
+  },
+  {
+    id: 17,
+    emri: "Rron",
+    mbiemri: "Bajrami",
+    kategoria: "4",
+    viti: "2026",
+    rryma: "830",
+    varrezat: "325",
+    ekstra: "1250",
+  },
+  {
+    id: 18,
+    emri: "Altin",
+    mbiemri: "Selimi",
+    kategoria: "1",
+    viti: "2026",
+    rryma: "880",
+    varrezat: "345",
+    ekstra: "1000",
+  },
+  {
+    id: 19,
+    emri: "Driton",
+    mbiemri: "Aliu",
+    kategoria: "2",
+    viti: "2026",
+    rryma: "760",
+    varrezat: "265",
+    ekstra: "890",
+  },
+  {
+    id: 20,
+    emri: "Flamur",
+    mbiemri: "Rexha",
+    kategoria: "3",
+    viti: "2026",
+    rryma: "800",
+    varrezat: "310",
+    ekstra: "1020",
+  },
+  {
+    id: 21,
+    emri: "Leonard",
+    mbiemri: "Miftari",
+    kategoria: "4",
+    viti: "2026",
+    rryma: "920",
+    varrezat: "360",
+    ekstra: "1400",
+  },
+  {
+    id: 22,
+    emri: "Egzon",
+    mbiemri: "Shala",
+    kategoria: "1",
+    viti: "2026",
+    rryma: "870",
+    varrezat: "295",
+    ekstra: "960",
+  },
+  {
+    id: 23,
+    emri: "Blerim",
+    mbiemri: "Hajrizi",
+    kategoria: "2",
+    viti: "2026",
+    rryma: "745",
+    varrezat: "250",
+    ekstra: "780",
+  },
+  {
+    id: 24,
+    emri: "Ermal",
+    mbiemri: "Kryeziu",
+    kategoria: "3",
+    viti: "2026",
+    rryma: "795",
+    varrezat: "285",
+    ekstra: "910",
+  },
+  {
+    id: 25,
+    emri: "Liridon",
+    mbiemri: "Pula",
+    kategoria: "4",
+    viti: "2026",
+    rryma: "850",
+    varrezat: "320",
+    ekstra: "1200",
+  },
+  {
+    id: 26,
+    emri: "Drilon",
+    mbiemri: "Gjemajli",
+    kategoria: "2",
+    viti: "2026",
+    rryma: "735",
+    varrezat: "245",
+    ekstra: "650",
+  },
+  {
+    id: 27,
+    emri: "Jetmir",
+    mbiemri: "Latifi",
+    kategoria: "1",
+    viti: "2026",
+    rryma: "890",
+    varrezat: "340",
+    ekstra: "1100",
+  },
+  {
+    id: 28,
+    emri: "Visar",
+    mbiemri: "Dauti",
+    kategoria: "3",
+    viti: "2026",
+    rryma: "785",
+    varrezat: "275",
+    ekstra: "880",
+  },
+  {
+    id: 29,
+    emri: "Endrit",
+    mbiemri: "Spahiu",
+    kategoria: "4",
+    viti: "2026",
+    rryma: "915",
+    varrezat: "355",
+    ekstra: "1320",
+  },
+  {
+    id: 30,
+    emri: "Arlind",
+    mbiemri: "Shyti",
+    kategoria: "2",
+    viti: "2026",
+    rryma: "755",
+    varrezat: "260",
+    ekstra: "820",
+  },
+];
+
+import Header from "../Components/Header";
+import Banner from "../Components/Banner";
+import { useState } from "react";
+
+import "./Home.css";
+
+function Home() {
+  //Vetem 15 antar per faqe
+  const pageSize = 15;
+  const [page, setPage] = useState(1);
+
+  const antaret = Lista.slice((page - 1) * pageSize, page * pageSize);
+
+  return (
+    <>
+      <Header />
+      <Banner />
+
+      <div className="searchCont">
+        <form className="search">
+          <button>
+            <svg
+              width="17"
+              height="16"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              role="img"
+              aria-labelledby="search"
+            >
+              <path
+                d="M7.667 12.667A5.333 5.333 0 107.667 2a5.333 5.333 0 000 10.667zM14.334 14l-2.9-2.9"
+                stroke="currentColor"
+                strokeWidth="1.333"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              ></path>
+            </svg>
+          </button>
+          <input
+            className="input"
+            placeholder="Kerko antar me id, emer, kategori ose vitin e pageses"
+            required=""
+            type="text"
+          />
+          <button className="reset" type="reset">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M6 18L18 6M6 6l12 12"
+              ></path>
+            </svg>
+          </button>
+        </form>
+      </div>
+
+      {/*Tabela me antar*/}
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Emri dhe Mbiemri</th>
+            <th>Kategoria</th>
+            <th>Viti</th>
+            <th>Shume Ekstra</th>
+          </tr>
+        </thead>
+        <tbody>
+          {antaret.map((element) => (
+            <tr key={element.id}>
+              <td>{element.id}</td>
+              <td>
+                {element.emri} {element.mbiemri}
+              </td>
+              <td>{element.kategoria}</td>
+              <td>{element.viti}</td>
+              <td>
+                {Number(element.rryma) +
+                  Number(element.varrezat) +
+                  Number(element.ekstra)}{" "}
+                den.
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+      {/*Ndryshon faqet*/}
+      <div className="changePage">
+        <button disabled={page === 1} onClick={() => setPage((p) => p - 1)}>
+          Prev
+        </button>
+        <span>{page}</span>
+        <button
+          disabled={page * pageSize >= Lista.length}
+          onClick={() => setPage((p) => p + 1)}
+        >
+          Next
+        </button>
+      </div>
+    </>
+  );
+}
+
+export default Home;

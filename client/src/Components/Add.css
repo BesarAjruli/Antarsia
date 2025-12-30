@@ -1,0 +1,33 @@
+.add {
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 55px;
+    background-color: #008000;
+    border-radius: 15px;
+    color: #FFD700;
+    column-span: all;
+    box-shadow: 7px 7px 20px #000;
+}
+
+.icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-self: center;
+    width: 100%;
+    border-radius: 15px;
+    height: 100%;
+}
+.icon-wrapper:hover{
+    background-color: #066e06c7;
+}
+
+.divider {
+    width: 1px;
+    height: 80%; /* adjust height as needed */
+    background-color: #fff;
+}

@@ -130,3 +130,8 @@ input:not(:placeholder-shown) ~ .reset {
   place-items: center;
   margin-top: 30px;
 }
+
+.addCont{
+  position: sticky;
+  bottom: 30px;
+}

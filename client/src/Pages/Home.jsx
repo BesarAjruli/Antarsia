@@ -420,7 +420,7 @@ function Home() {
           ))}
         </tbody>
         {/*Pjesa per te shtuar ose printim*/}
-      <Add/>
+      <td colSpan={5} className="addCont"><Add/></td>
       </table>
 
       {/*Ndryshon faqet*/}

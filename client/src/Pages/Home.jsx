@@ -313,6 +313,7 @@ const Lista = [
 
 import Header from "../Components/Header";
 import Banner from "../Components/Banner";
+import Add from "../Components/Add";
 import { useState } from "react";
 
 import "./Home.css";
@@ -433,6 +434,9 @@ function Home() {
           Next
         </button>
       </div>
+
+      {/*Pjesa per te shtuar ose printim*/}
+      <Add/>
     </>
   );
 }

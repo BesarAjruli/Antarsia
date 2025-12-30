@@ -328,20 +328,21 @@ function Home() {
   const [searchList, setSearchList] = useState([]);
 
   const search = (e) => {
-  const searchText = e.target.value.toLowerCase();
+    const searchText = e.target.value.toLowerCase();
 
-  const filtered = Lista.filter((item) =>
-    item.emri.toLowerCase().includes(searchText)
-  );
+    const filtered = Lista.filter((item) =>
+      item.emri.toLowerCase().includes(searchText)
+    );
 
-  setSearchList(filtered);
-};
+    setSearchList(filtered);
+  };
 
   return (
     <>
       <Header />
       <Banner />
 
+      {/*Search bari */}
       <div className="searchCont">
         <form className="search">
           <button>

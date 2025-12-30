@@ -1,0 +1,16 @@
+.header{
+    display: flex;
+    place-items: center;
+    justify-content: space-between;
+}
+.header h1{
+    text-transform: uppercase;
+    font-size: 35px;
+    margin-right: auto;
+    padding-right: 175px;
+}
+.header img{
+    height: 130px;
+    margin-right: auto;
+    margin-left: 55px;
+}

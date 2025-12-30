@@ -324,6 +324,19 @@ function Home() {
 
   const antaret = Lista.slice((page - 1) * pageSize, page * pageSize);
 
+  //Per searchin
+  const [searchList, setSearchList] = useState([]);
+
+  const search = (e) => {
+  const searchText = e.target.value.toLowerCase();
+
+  const filtered = Lista.filter((item) =>
+    item.emri.toLowerCase().includes(searchText)
+  );
+
+  setSearchList(filtered);
+};
+
   return (
     <>
       <Header />
@@ -354,6 +367,7 @@ function Home() {
             placeholder="Kerko antar me id, emer, kategori ose vitin e pageses"
             required=""
             type="text"
+            onChange={(e) => search(e)}
           />
           <button className="reset" type="reset">
             <svg
@@ -386,7 +400,7 @@ function Home() {
           </tr>
         </thead>
         <tbody>
-          {antaret.map((element) => (
+          {(searchList.length > 0 ? searchList : antaret).map((element) => (
             <tr key={element.id}>
               <td>{element.id}</td>
               <td>

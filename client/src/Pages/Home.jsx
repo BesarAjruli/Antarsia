@@ -419,6 +419,8 @@ function Home() {
             </tr>
           ))}
         </tbody>
+        {/*Pjesa per te shtuar ose printim*/}
+      <Add/>
       </table>
 
       {/*Ndryshon faqet*/}
@@ -435,8 +437,7 @@ function Home() {
         </button>
       </div>
 
-      {/*Pjesa per te shtuar ose printim*/}
-      <Add/>
+      
     </>
   );
 }

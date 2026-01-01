@@ -26,12 +26,12 @@ const MemberDialog = forwardRef(({data}, ref) => {
         <div>
           <div>
             {/*Emri dhe Mbiemri (Besar Ajruli)*/}
-            <span></span>
+            <span className="dialogEmri">Besar Ajruli</span>
           </div>
           <div>
             {/*Te dhenat e antarit*/}
             <ul>
-              <li>Viti</li>
+              <li>Viti: </li>
               <li>Kategoria: </li>
               <li>Rryma: </li>
               <li>Varrezat: </li>
@@ -42,9 +42,9 @@ const MemberDialog = forwardRef(({data}, ref) => {
             <span>Deshiron te ndryshosh diçka?</span>
           </div>
           <div>
-            <button>Fshij</button>
-            <button>Printo</button>
-            <button>Ndrysho</button>
+            <button style={{backgroundColor: 'red'}}>Fshij</button>
+            <button style={{backgroundColor: '#dfc013ff'}}>Printo</button>
+            <button style={{backgroundColor: 'green'}}>Ndrysho</button>
           </div>
         </div>
       </dialog>

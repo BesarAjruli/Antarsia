@@ -4,6 +4,11 @@
   place-items: center;
   gap: 30px;
 }
+.mainCont > div {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
 form > span {
   display: block;
   width: 100%;
@@ -20,7 +25,6 @@ select {
   background-color: #e4e4e4;
   padding: 0 15px;
   font-size: 16px;
-  margin-bottom: 15px;
 }
 
 .tickIcon {
@@ -29,9 +33,9 @@ select {
   width: 42px;
 }
 
-.submitBttnContAddD{
-    width: 100%;
-    text-align: center;
+.submitBttnContAddD {
+  width: 100%;
+  text-align: center;
 }
 
 .submitBttnContAddD button {

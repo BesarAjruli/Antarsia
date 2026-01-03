@@ -315,6 +315,7 @@ import Header from "../Components/Header";
 import Banner from "../Components/Banner";
 import Add from "../Components/Add";
 import MemberDialog from "../Components/MemberDialog";
+import AddDialog from "../Components/AddDialog";
 import { useState, useRef } from "react";
 
 import "./Home.css";
@@ -339,8 +340,9 @@ function Home() {
     setSearchList(filtered);
   };
 
-  //Dialogi
-  const memberDialog = useRef()
+  //Dialogs
+  const memberDialog = useRef();
+  const addDialog = useRef();
 
   return (
     <>
@@ -407,7 +409,10 @@ function Home() {
         </thead>
         <tbody>
           {(searchList.length > 0 ? searchList : antaret).map((element) => (
-            <tr key={element.id} onClick={() => memberDialog.current.showModal()}>
+            <tr
+              key={element.id}
+              onClick={() => memberDialog.current.showModal()}
+            >
               <td>{element.id}</td>
               <td>
                 {element.emri} {element.mbiemri}
@@ -424,11 +429,13 @@ function Home() {
           ))}
         </tbody>
         {/*Pjesa per te shtuar ose printim*/}
-      <tfoot>
-        <tr>
-          <td colSpan={5} className="addCont"><Add/></td>
-        </tr>
-      </tfoot>
+        <tfoot>
+          <tr>
+            <td colSpan={5} className="addCont">
+              <Add addDialog={addDialog}/>
+            </td>
+          </tr>
+        </tfoot>
       </table>
 
       {/*Ndryshon faqet*/}
@@ -445,7 +452,8 @@ function Home() {
         </button>
       </div>
 
-      <MemberDialog ref={memberDialog}/>
+      <MemberDialog ref={memberDialog} />
+      <AddDialog ref={addDialog} />
     </>
   );
 }

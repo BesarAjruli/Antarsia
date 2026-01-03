@@ -8,7 +8,10 @@ function Banner({ fshati }) {
           height: "40px",
           display: "flex",
           justifyContent: "center",
+          position: "sticky",
           placeItems: "center",
+          top: "0",
+          zIndex: '99'
         }}
       >
         <h3>{fshati}</h3>

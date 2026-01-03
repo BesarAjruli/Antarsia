@@ -1,0 +1,41 @@
+.mainCont {
+  display: flex;
+  justify-content: center;
+  place-items: center;
+  gap: 30px;
+}
+form > span {
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+input,
+select {
+  width: 180px;
+  height: 30px;
+  border: 0;
+  border-radius: 15px;
+  background-color: #e4e4e4;
+  padding: 0 15px;
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+.tickIcon {
+  position: static;
+  color: #ffd700;
+  width: 42px;
+}
+
+.submitBttnContAddD{
+    width: 100%;
+    text-align: center;
+}
+
+.submitBttnContAddD button {
+  background-color: #008000;
+  height: 45px;
+  width: 80px;
+}

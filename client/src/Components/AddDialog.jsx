@@ -1,4 +1,5 @@
 import { forwardRef } from "react";
+import "./AddDialog.css";
 
 const AddDialog = forwardRef(({}, ref) => {
   return (
@@ -32,15 +33,16 @@ const AddDialog = forwardRef(({}, ref) => {
           <div className="mainCont">
             <div>
               <div>
-                <label htmlFor="emri">Emri</label>
+                <label htmlFor="emri">Emri</label> <br />
                 <input type="text" id="emri" name="emri" />
               </div>
               <div>
-                <label htmlFor="mbiemri"></label>
+                <label htmlFor="mbiemri">Mbiemri</label>
+                <br />
                 <input type="text" id="mbiemri" name="mbiemri" />
               </div>
               <div>
-                <label htmlFor="ktg">Kategoria</label>
+                <label htmlFor="ktg">Kategoria</label> <br />
                 <select name="ktg" id="ktg">
                   <option value="1">I</option>
                   <option value="2">II</option>
@@ -53,15 +55,18 @@ const AddDialog = forwardRef(({}, ref) => {
             <div>
               <div>
                 <label htmlFor="rryma">Rryma</label>
-                <input type="number" id="rryma" name="rryma"/>
+                <br />
+                <input type="number" id="rryma" name="rryma" />
               </div>
               <div>
                 <label htmlFor="varrezat">Varrezat</label>
-                <input type="number" id="varrezat" name="varrezat"/>
+                <br />
+                <input type="number" id="varrezat" name="varrezat" />
               </div>
               <div>
                 <label htmlFor="ekstra">Ekstra</label>
-                <input type="number" id="ekstra" name="ekstra"/>
+                <br />
+                <input type="number" id="ekstra" name="ekstra" />
               </div>
             </div>
           </div>

@@ -1,5 +1,7 @@
 import { forwardRef } from "react";
 import "./AddDialog.css";
+import Icon from '@mdi/react';
+import { mdiCheck } from '@mdi/js';
 
 const AddDialog = forwardRef(({}, ref) => {
   return (
@@ -44,10 +46,10 @@ const AddDialog = forwardRef(({}, ref) => {
               <div>
                 <label htmlFor="ktg">Kategoria</label> <br />
                 <select name="ktg" id="ktg">
-                  <option value="1">I</option>
-                  <option value="2">II</option>
-                  <option value="3">III</option>
-                  <option value="4">IV</option>
+                  <option value="1">Kategoria I</option>
+                  <option value="2">Kategoria II</option>
+                  <option value="3">Kategoria III</option>
+                  <option value="4">Kategoria IV</option>
                 </select>
               </div>
             </div>
@@ -70,7 +72,11 @@ const AddDialog = forwardRef(({}, ref) => {
               </div>
             </div>
           </div>
-          <button></button>
+          <div className="submitBttnContAddD">
+            <button>
+                <Icon className="tickIcon" path={mdiCheck} />
+            </button>
+          </div>
         </form>
       </dialog>
     </>

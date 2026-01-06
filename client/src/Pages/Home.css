@@ -1,5 +1,5 @@
 table{
-    width: 100vw;
+    width: 100%;
     text-align: center;
     padding: 30px 75px 50px 75px;
     border-spacing: 0;
@@ -134,4 +134,8 @@ input:not(:placeholder-shown) ~ .reset {
 .addCont{
   position: sticky;
   bottom: 30px;
+}
+
+@media (max-width: 768px) {
+  
 }

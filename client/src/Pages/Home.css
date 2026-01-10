@@ -1,37 +1,37 @@
-table{
-    width: 100%;
-    text-align: center;
-    padding: 30px 75px 50px 75px;
-    border-spacing: 0;
-    font-size: 18px;
+table {
+  width: 100%;
+  text-align: center;
+  padding: 30px 75px 50px 75px;
+  border-spacing: 0;
+  font-size: 18px;
 }
-table thead th{
-    border-bottom: 2px solid #2F2F2F;
-    font-size: 22px;
-}
-
-table tbody td{
-    border-bottom: 1px solid #2F2F2F;
-    padding: 10px;
-}
-table tbody tr:hover{
-    background-color: #a8a8a85d;
+table thead th {
+  border-bottom: 2px solid #2f2f2f;
+  font-size: 22px;
 }
 
-.changePage{
-    display: flex;
-    justify-content: center;
-    place-items: center;
-    gap: 30px;
-    margin-bottom: 50px;
+table tbody td {
+  border-bottom: 1px solid #2f2f2f;
+  padding: 10px;
+}
+table tbody tr:hover {
+  background-color: #a8a8a85d;
 }
 
-.changePage button{
-    width: 150px;
-    height: 35px;
-    border: 1px solid #2f2f2f34;
-    box-shadow: 0px 0px 8px #2F2F2F;
-    border-radius: 15px;
+.changePage {
+  display: flex;
+  justify-content: center;
+  place-items: center;
+  gap: 30px;
+  margin-bottom: 50px;
+}
+
+.changePage button {
+  width: 150px;
+  height: 35px;
+  border: 1px solid #2f2f2f34;
+  box-shadow: 0px 0px 8px #2f2f2f;
+  border-radius: 15px;
 }
 
 /* From uiverse.io by @satyamchaudharydev */
@@ -131,11 +131,16 @@ input:not(:placeholder-shown) ~ .reset {
   margin-top: 30px;
 }
 
-.addCont{
+.addCont {
   position: sticky;
   bottom: 30px;
 }
 
 @media (max-width: 768px) {
-  
+  table {
+    padding: 30px 15px 50px 15px;
+  }
+  table thead th {
+    font-size: 18px;
+  }
 }

@@ -317,6 +317,7 @@ import Add from "../Components/Add";
 import MemberDialog from "../Components/MemberDialog";
 import AddDialog from "../Components/AddDialog";
 import { useState, useRef } from "react";
+import { useMediaQuery } from "react-responsive";
 
 import "./Home.css";
 
@@ -343,6 +344,9 @@ function Home() {
   //Dialogs
   const memberDialog = useRef();
   const addDialog = useRef();
+
+  //Nese eshte mob
+  const isMobile = useMediaQuery({ maxWidth: 768 });
 
   return (
     <>
@@ -401,10 +405,10 @@ function Home() {
         <thead>
           <tr>
             <th>ID</th>
-            <th>Emri dhe Mbiemri</th>
+            <th>{isMobile ? "Antari" : "Emri dhe Mbiemri" }</th>
             <th>Kategoria</th>
             <th>Viti</th>
-            <th>Shume Ekstra</th>
+            <th>{isMobile ? "Ekstra" : "Shume Ekstra" }</th>
           </tr>
         </thead>
         <tbody>
@@ -432,7 +436,7 @@ function Home() {
         <tfoot>
           <tr>
             <td colSpan={5} className="addCont">
-              <Add addDialog={addDialog}/>
+              <Add addDialog={addDialog} />
             </td>
           </tr>
         </tfoot>

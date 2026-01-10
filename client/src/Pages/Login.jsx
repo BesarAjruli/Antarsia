@@ -1,7 +1,9 @@
 import { useState } from "react";
+import { useNavigation } from "react-router"
 import "./Login.css";
 
 function Login() {
+  const nav = useNavigation()
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -32,9 +34,10 @@ function Login() {
         alert(data.message);
         return;
       }
-
-      alert("Login successful");
+      
       console.log("Response:", data);
+
+      nav('/')
     } catch (err) {
       console.error("Signup error:", err);
       alert("Server error");

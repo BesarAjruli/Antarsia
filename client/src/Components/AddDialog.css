@@ -43,3 +43,18 @@ select {
   height: 45px;
   width: 80px;
 }
+
+@media (max-width: 768px) {
+  input,
+  select {
+    width: 130px;
+    padding: 0 10px;
+  }
+  .submitBttnContAddD button {
+    height: 55px;
+    width: 120px;
+  }
+  .tickIcon {
+    width: 48px;
+  }
+}

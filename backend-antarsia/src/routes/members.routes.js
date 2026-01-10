@@ -7,6 +7,7 @@ const {
     updateMember,
     deleteMember
 } = require("../controllers/members.controller");
+const { logout } = require("../controllers/auth.controller");
 
 // Krijimi i një antari
 router.post("/", auth, createMember);
@@ -22,5 +23,6 @@ router.put("/:id", auth, updateMember);
 
 // Fshirja e një antari
 router.delete("/:id", auth, deleteMember);
-
+//dil nga app
+router.post("/logout",auth,  logout)
 module.exports = router;

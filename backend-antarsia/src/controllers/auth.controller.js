@@ -3,43 +3,43 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 exports.register = async (req, res) => {
-  try {
+try {
     const { name, email, password } = req.body;
 
     if (!name || !email || !password) {
-      return res.status(400).json({ message: "All fields are required" });
+    return res.status(400).json({ message: "All fields are required" });
     }
 
     const hashed = await bcrypt.hash(password, 10);
 
     const user = await pool.query(
-      "INSERT INTO users(name, email, password) VALUES($1, $2, $3) RETURNING id, name, email",
-      [name, email, hashed]
+    "INSERT INTO users(name, email, password) VALUES($1, $2, $3) RETURNING id, name, email",
+    [name, email, hashed]
     );
 
     res.status(201).json(user.rows[0]);
-  } catch (err) {
+} catch (err) {
     console.error("Register error:", err);
     res.status(500).json({ message: "Registration error", error: err.message });
-  }
+}
 };
 
 exports.login = async (req, res) => {
-  try {
+try {
     const { email, password } = req.body;
 
     if (!email || !password) {
-      return res
+    return res
         .status(400)
         .json({ message: "Email and password are required" });
     }
 
     const result = await pool.query("SELECT * FROM users WHERE email = $1", [
-      email,
+    email,
     ]);
 
     if (result.rows.length === 0) {
-      return res.status(401).json({ message: "Incorrect email or password" });
+    return res.status(401).json({ message: "Incorrect email or password" });
     }
 
     const user = result.rows[0];
@@ -47,25 +47,34 @@ exports.login = async (req, res) => {
     const valid = await bcrypt.compare(password, user.password);
 
     if (!valid) {
-      return res.status(401).json({ message: "Incorrect email or password" });
+    return res.status(401).json({ message: "Incorrect email or password" });
     }
 
     if (!process.env.JWT_SECRET) {
-      throw new Error("JWT_SECRET mungon në .env");
+    throw new Error("JWT_SECRET mungon në .env");
     }
 
     const token = jwt.sign(
-      { id: user.id, name: user.name },
-      process.env.JWT_SECRET,
-      { expiresIn: "1d" }
+        { id: user.id, name: user.name },
+        process.env.JWT_SECRET,
+        { expiresIn: "30d" } // cookie për 30 ditë
     );
-
-    res.json({
-      token,
-      user: { id: user.id, name: user.name, email: user.email },
+    res.cookie("token", token, {
+        httpOnly: true,
+        maxAge: 30 * 24 * 60 * 60 * 1000,
+        sameSite: "strict",
     });
-  } catch (err) {
+    res.json({message: "login succes" ,  user: { id: user.id, name: user.name, email: user.email },})
+} catch (err) {
     console.error("Login error:", err);
     res.status(500).json({ message: "failed login", error: err.message });
-  }
+}
 };
+exports.logout = (req , res) => {
+    //fshij cooking qe ruan tokeni
+    res.clearCookie("token", {
+        httpOnly: true,
+        sameSite: "strict",
+    });
+    res.json({message: "You are now logged out"})
+}

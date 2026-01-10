@@ -143,4 +143,9 @@ input:not(:placeholder-shown) ~ .reset {
   table thead th {
     font-size: 18px;
   }
+  .changePage button {
+    width: 150px;
+    height: 45px;
+    font-size: 16px;
+  }
 }

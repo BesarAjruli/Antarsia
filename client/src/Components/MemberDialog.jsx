@@ -1,7 +1,12 @@
 import "./MemberDialog.css";
 import { forwardRef } from "react";
+import Icon from "@mdi/react";
+import { mdiDelete, mdiPrinter, mdiPencil } from "@mdi/js";
+import { useMediaQuery } from "react-responsive";
 
 const MemberDialog = forwardRef(({data}, ref) => {
+  const isMobile = useMediaQuery({ maxWidth: 768 });
+
   return (
     <>
       <dialog ref={ref}>
@@ -42,9 +47,9 @@ const MemberDialog = forwardRef(({data}, ref) => {
             <span>Deshiron te ndryshosh diçka?</span>
           </div>
           <div>
-            <button style={{backgroundColor: 'red'}}>Fshij</button>
-            <button style={{backgroundColor: '#dfc013ff'}}>Printo</button>
-            <button style={{backgroundColor: 'green'}}>Ndrysho</button>
+            <button style={{backgroundColor: 'red'}}>{isMobile? <Icon className="memberDlgIcons" path={mdiDelete}/> : "Fshij"}</button>
+            <button style={{backgroundColor: '#dfc013ff'}}>{isMobile? <Icon className="memberDlgIcons" path={mdiPrinter}/> : "Printo"}</button>
+            <button style={{backgroundColor: 'green'}}>{isMobile? <Icon className="memberDlgIcons" path={mdiPencil}/> : "Ndrysho"}</button>
           </div>
         </div>
       </dialog>

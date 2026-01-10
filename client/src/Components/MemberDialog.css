@@ -38,3 +38,12 @@ dialog button{
     color: #fff;
     cursor: pointer;
 }
+
+@media (max-width: 768px) {
+  dialog button{
+    width: 80px;
+}
+  .memberDlgIcons{
+    position: static;
+  }
+}

@@ -59,6 +59,7 @@ exports.login = async (req, res) => {
             process.env.JWT_SECRET,
             { expiresIn: "1d" }
         );
+        localStorage.setItem("user", user)
 
         res.json({
             token,

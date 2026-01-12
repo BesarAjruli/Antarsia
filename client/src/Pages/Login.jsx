@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { useNavigation } from "react-router"
+import { useNavigate } from "react-router"
 import "./Login.css";
 
 function Login() {
-  const nav = useNavigation()
+  const nav = useNavigate()
   const [formData, setFormData] = useState({
     email: "",
     password: "",

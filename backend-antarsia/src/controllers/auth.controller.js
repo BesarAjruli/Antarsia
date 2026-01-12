@@ -79,5 +79,7 @@ exports.logout = (req , res) => {
     res.json({message: "You are now logged out"})
 }
 exports.getUser = (req, res) => {
-    console.log(req.user)
+    console.log(req.user);
+    res.json(req.user)
+
 }

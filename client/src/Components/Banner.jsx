@@ -1,4 +1,4 @@
-function Banner({ fshati }) {
+function Banner({ userName }) {
   return (
     <>
       <div
@@ -14,7 +14,7 @@ function Banner({ fshati }) {
           zIndex: '99'
         }}
       >
-        <h3>{fshati}</h3>
+        <h3>{userName}</h3>
       </div>
     </>
   );

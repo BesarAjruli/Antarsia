@@ -61,8 +61,10 @@ try {
     );
     res.cookie("token", token, {
         httpOnly: true,
+        sameSite: "lax",
+        secure: false,
+        path: '/',
         maxAge: 30 * 24 * 60 * 60 * 1000,
-        sameSite: "strict",
     });
     res.json({message: "login succes" ,  user: { id: user.id, name: user.name, email: user.email },})
 } catch (err) {
@@ -79,7 +81,5 @@ exports.logout = (req , res) => {
     res.json({message: "You are now logged out"})
 }
 exports.getUser = (req, res) => {
-    console.log(req.user);
     res.json(req.user)
-
 }

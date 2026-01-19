@@ -316,12 +316,13 @@ import Banner from "../Components/Banner";
 import Add from "../Components/Add";
 import MemberDialog from "../Components/MemberDialog";
 import AddDialog from "../Components/AddDialog";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useMediaQuery } from "react-responsive";
 
 import "./Home.css";
 
 function Home() {
+  const [user, setUser] = useState()
   //Vetem 15 antar per faqe
   const pageSize = 15;
   const [page, setPage] = useState(1);
@@ -348,10 +349,28 @@ function Home() {
   //Nese eshte mob
   const isMobile = useMediaQuery({ maxWidth: 768 });
 
+  //fetch user id nga cookies nese eshte log
+  useEffect(() => {
+    const getUser = async () => {
+      try {
+        const res = await fetch("http://localhost:8095/api/auth/user", {
+          method: "GET",
+          credentials: "include",
+        });
+        const data = await res.json()
+        setUser(data)
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    getUser();
+  }, []);
+
   return (
     <>
       <Header />
-      <Banner />
+      <Banner userName={user?.name}/>
 
       {/*Search bari */}
       <div className="searchCont">
@@ -405,10 +424,10 @@ function Home() {
         <thead>
           <tr>
             <th>ID</th>
-            <th>{isMobile ? "Antari" : "Emri dhe Mbiemri" }</th>
+            <th>{isMobile ? "Antari" : "Emri dhe Mbiemri"}</th>
             <th>Kategoria</th>
             <th>Viti</th>
-            <th>{isMobile ? "Ekstra" : "Shume Ekstra" }</th>
+            <th>{isMobile ? "Ekstra" : "Shume Ekstra"}</th>
           </tr>
         </thead>
         <tbody>

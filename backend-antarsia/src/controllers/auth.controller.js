@@ -25,53 +25,49 @@ try {
 };
 
 exports.login = async (req, res) => {
-try {
     const { email, password } = req.body;
 
-    if (!email || !password) {
-    return res
-        .status(400)
-        .json({ message: "Email and password are required" });
-    }
-
-    const result = await pool.query("SELECT * FROM users WHERE email = $1", [
-    email,
-    ]);
-
-    if (result.rows.length === 0) {
-    return res.status(401).json({ message: "Incorrect email or password" });
-    }
-
-    const user = result.rows[0];
-
-    const valid = await bcrypt.compare(password, user.password);
-
-    if (!valid) {
-    return res.status(401).json({ message: "Incorrect email or password" });
-    }
-
-    if (!process.env.JWT_SECRET) {
-    throw new Error("JWT_SECRET mungon në .env");
-    }
-
-    const token = jwt.sign(
-        { id: user.id, name: user.name },
-        process.env.JWT_SECRET,
-        { expiresIn: "30d" } // cookie për 30 ditë
+try {
+    const userRes = await pool.query(
+    "SELECT * FROM users WHERE email = $1",
+    [email]
     );
+    if (userRes.rows.length === 0)
+    return res.status(400).json({ message: "Email gabim" });
+    const user = userRes.rows[0];
+
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch)
+    return res.status(400).json({ message: "Password gabim" });
+
+      // TOKEN
+    const token = jwt.sign(
+    { id: user.id, email: user.email },
+    process.env.JWT_SECRET,
+    { expiresIn: "30d" }
+    );
+      // COOKIE 30 DIT
     res.cookie("token", token, {
         httpOnly: true,
-        sameSite: "lax",
-        secure: false,
-        path: '/',
         maxAge: 30 * 24 * 60 * 60 * 1000,
+        sameSite: "lax",
     });
-    res.json({message: "login succes" ,  user: { id: user.id, name: user.name, email: user.email },})
-} catch (err) {
-    console.error("Login error:", err);
-    res.status(500).json({ message: "failed login", error: err.message });
-}
+
+    res.json({
+        message: "Login success",
+        token, // 
+        user: {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        },
+    });
+    } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Server error" });
+    }
 };
+
 exports.logout = (req , res) => {
     //fshij cooking qe ruan tokeni
     res.clearCookie("token", {

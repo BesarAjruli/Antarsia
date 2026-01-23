@@ -1,4 +1,4 @@
-const Lista = [
+/*const Lista = [
   {
     id: 0,
     emri: "Ardit",
@@ -309,7 +309,7 @@ const Lista = [
     varrezat: "260",
     ekstra: "820",
   },
-];
+];*/
 
 import Header from "../Components/Header";
 import Banner from "../Components/Banner";
@@ -318,16 +318,23 @@ import MemberDialog from "../Components/MemberDialog";
 import AddDialog from "../Components/AddDialog";
 import { useState, useRef, useEffect } from "react";
 import { useMediaQuery } from "react-responsive";
+import { useNavigate } from "react-router";
 
 import "./Home.css";
 
 function Home() {
-  const [user, setUser] = useState()
+  //Per navigim
+  const navigate = useNavigate();
+
+  const [user, setUser] = useState();
+  const [members, setMmbers] = useState([])
+  const [memberId, setmemberId] = useState();
+
   //Vetem 15 antar per faqe
   const pageSize = 15;
   const [page, setPage] = useState(1);
 
-  const antaret = Lista.slice((page - 1) * pageSize, page * pageSize);
+  const antaret = members.slice((page - 1) * pageSize, page * pageSize);
 
   //Per searchin
   const [searchList, setSearchList] = useState([]);
@@ -335,8 +342,8 @@ function Home() {
   const search = (e) => {
     const searchText = e.target.value.toLowerCase();
 
-    const filtered = Lista.filter((item) =>
-      item.emri.toLowerCase().includes(searchText)
+    const filtered = members.filter((item) =>
+      item.emri.toLowerCase().includes(searchText),
     );
 
     setSearchList(filtered);
@@ -357,20 +364,38 @@ function Home() {
           method: "GET",
           credentials: "include",
         });
-        const data = await res.json()
-        setUser(data)
+        const data = await res.json();
+        setUser(data);
+        console.log(data)
+
+        if (!data || !data?.id) navigate('/login')
       } catch (err) {
         console.log(err);
       }
     };
 
+    const getMembers = async () => {
+      try {
+        const res = await fetch("http://localhost:8095/api/members/", {
+          method: "GET",
+          credentials: "include",
+        });
+        const data = await res.json();
+        setMmbers(data);
+        console.log(data)
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
     getUser();
+    getMembers()
   }, []);
 
   return (
     <>
       <Header />
-      <Banner userName={user?.name}/>
+      <Banner userName={user?.name} />
 
       {/*Search bari */}
       <div className="searchCont">
@@ -431,21 +456,24 @@ function Home() {
           </tr>
         </thead>
         <tbody>
-          {(searchList.length > 0 ? searchList : antaret).map((element) => (
+          {(searchList.length > 0 ? searchList : antaret).map((element, i) => (
             <tr
               key={element.id}
-              onClick={() => memberDialog.current.showModal()}
+              onClick={() => {
+                memberDialog.current.showModal()
+                setmemberId(i)
+              }}
             >
               <td>{element.id}</td>
               <td>
                 {element.emri} {element.mbiemri}
               </td>
-              <td>{element.kategoria}</td>
-              <td>{element.viti}</td>
+              <td>{element.kategoria_pageses}</td>
+              <td>{element.viti_pageses}</td>
               <td>
-                {Number(element.rryma) +
-                  Number(element.varrezat) +
-                  Number(element.ekstra)}{" "}
+                {Number(element.pagesa_rymes) +
+                  Number(element.fondi_varrezave) +
+                  Number(element.fondi_xhamine)}{" "}
                 den.
               </td>
             </tr>
@@ -468,14 +496,14 @@ function Home() {
         </button>
         <span>{page}</span>
         <button
-          disabled={page * pageSize >= Lista.length}
+          disabled={page * pageSize >= members.length}
           onClick={() => setPage((p) => p + 1)}
         >
           Next
         </button>
       </div>
 
-      <MemberDialog ref={memberDialog} />
+      <MemberDialog ref={memberDialog} data={members} id={memberId}/>
       <AddDialog ref={addDialog} />
     </>
   );

@@ -33,15 +33,17 @@ dialog button{
     margin: 30px 10px;
     border: 0;
     border-radius: 15px;
-    height: 30px;
+    height: 40px;
     font-size: 16px;
     color: #fff;
     cursor: pointer;
+    font-weight: 700;
 }
 
 @media (max-width: 768px) {
   dialog button{
     width: 80px;
+    height: 30px;
 }
   .memberDlgIcons{
     position: static;

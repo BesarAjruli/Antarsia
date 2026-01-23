@@ -390,6 +390,33 @@ function Home() {
     getMembers()
   }, []);
 
+  const printList = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:8095/api/pdf/members`,
+        {
+          credentials: "include",
+        },
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to download PDF");
+      }
+
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+
+      // Open PDF in a new tab
+      const printWindow = window.open(url);
+      printWindow.onload = () => {
+        printWindow.focus();
+        printWindow.print(); // Trigger browser print dialog
+      };
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   return (
     <>
       <Header />
@@ -481,7 +508,7 @@ function Home() {
         <tfoot>
           <tr>
             <td colSpan={5} className="addCont">
-              <Add addDialog={addDialog} />
+              <Add addDialog={addDialog} printList={printList}/>
             </td>
           </tr>
         </tfoot>

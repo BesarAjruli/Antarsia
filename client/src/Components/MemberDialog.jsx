@@ -4,15 +4,59 @@ import Icon from "@mdi/react";
 import { mdiDelete, mdiPrinter, mdiPencil } from "@mdi/js";
 import { useMediaQuery } from "react-responsive";
 
-const MemberDialog = forwardRef(({data, id}, ref) => {
+const MemberDialog = forwardRef(({ data, id }, ref) => {
   const isMobile = useMediaQuery({ maxWidth: 768 });
-  console.log(id, data[id]?.emri)
+
+  const deleteMember = async () => {
+    try {
+      await fetch(`http://localhost:8095/api/members/${data[id].id}`, {
+        method: "DELETE",
+        credentials: "include",
+      });
+
+      location.reload();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const printMember = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:8095/api/pdf/member/${data[id].id}`,
+        {
+          credentials: "include",
+        },
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to download PDF");
+      }
+
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+
+      // Open PDF in a new tab
+      const printWindow = window.open(url);
+      printWindow.onload = () => {
+        printWindow.focus();
+        printWindow.print(); // Trigger browser print dialog
+      };
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <>
       <dialog ref={ref}>
         {/*Close Icon*/}
-        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" onClick={() => ref.current.close()}>
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          onClick={() => ref.current.close()}
+        >
           <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
           <g
             id="SVGRepo_tracerCarrier"
@@ -32,7 +76,9 @@ const MemberDialog = forwardRef(({data, id}, ref) => {
         <div>
           <div>
             {/*Emri dhe Mbiemri (Besar Ajruli)*/}
-            <span className="dialogEmri">{data[id]?.emri} {data[id]?.mbiemri}</span>
+            <span className="dialogEmri">
+              {data[id]?.emri} {data[id]?.mbiemri}
+            </span>
           </div>
           <div>
             {/*Te dhenat e antarit*/}
@@ -48,14 +94,35 @@ const MemberDialog = forwardRef(({data, id}, ref) => {
             <span>Deshiron te ndryshosh diçka?</span>
           </div>
           <div>
-            <button style={{backgroundColor: 'red'}}>{isMobile? <Icon className="memberDlgIcons" path={mdiDelete}/> : "Fshij"}</button>
-            <button style={{backgroundColor: '#dfc013ff'}}>{isMobile? <Icon className="memberDlgIcons" path={mdiPrinter}/> : "Printo"}</button>
-            <button style={{backgroundColor: 'green'}}>{isMobile? <Icon className="memberDlgIcons" path={mdiPencil}/> : "Ndrysho"}</button>
+            <button style={{ backgroundColor: "red" }} onClick={deleteMember}>
+              {isMobile ? (
+                <Icon className="memberDlgIcons" path={mdiDelete} />
+              ) : (
+                "Fshij"
+              )}
+            </button>
+            <button
+              style={{ backgroundColor: "#dfc013ff" }}
+              onClick={printMember}
+            >
+              {isMobile ? (
+                <Icon className="memberDlgIcons" path={mdiPrinter} />
+              ) : (
+                "Printo"
+              )}
+            </button>
+            <button style={{ backgroundColor: "green" }}>
+              {isMobile ? (
+                <Icon className="memberDlgIcons" path={mdiPencil} />
+              ) : (
+                "Ndrysho"
+              )}
+            </button>
           </div>
         </div>
       </dialog>
     </>
   );
-})
+});
 
 export default MemberDialog;

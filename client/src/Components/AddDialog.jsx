@@ -1,9 +1,59 @@
 import { forwardRef } from "react";
 import "./AddDialog.css";
-import Icon from '@mdi/react';
-import { mdiCheck } from '@mdi/js';
+import Icon from "@mdi/react";
+import { mdiCheck } from "@mdi/js";
+import { useState } from "react";
 
 const AddDialog = forwardRef(({}, ref) => {
+  const [formData, setFormData] = useState({
+    emri: "",
+    mbiemri: "",
+    kategoria_pageses: "1",
+    viti_pageses: "",
+    pagesa_rymes: "",
+    fondi_varrezave: "",
+    fondi_xhamine: "",
+  });
+
+  //Per ta ndare emrin dhe mbiemrin
+  const [emriMbiemri, setEmriMbiemri] = useState("");
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const submit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const res = await fetch("http://localhost:8095/api/members/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        alert(data.message);
+        return;
+      }
+
+      console.log("Response:", data);
+
+      ref.current.close();
+    } catch (err) {
+      console.error("Signup error:", err);
+      alert("Server error");
+    }
+  };
+
   return (
     <>
       <dialog ref={ref}>
@@ -30,22 +80,49 @@ const AddDialog = forwardRef(({}, ref) => {
             ></path>{" "}
           </g>
         </svg>
-        <form method="post">
+        <form method="post" onSubmit={submit}>
           <span>Shto antar te ri</span>
           <div className="mainCont">
             <div>
               <div>
-                <label htmlFor="emri">Emri</label> <br />
-                <input type="text" id="emri" name="emri" />
+                <label htmlFor="emriMbiemri">Emri dhe Mbiemri</label> <br />
+                <input
+                  type="text"
+                  id="emriMbiemri"
+                  name="emri"
+                  value={emriMbiemri}
+                  onChange={(e) => {
+                    const value = e.target.value;
+                    setEmriMbiemri(value);
+
+                    const parts = value.trim().split(" ");
+                    setFormData((prev) => ({
+                      ...prev,
+                      emri: parts[0] || "",
+                      mbiemri: parts.slice(1).join(" ") || "",
+                    }));
+                  }}
+                />
               </div>
               <div>
-                <label htmlFor="mbiemri">Mbiemri</label>
+                <label htmlFor="viti_pageses">Viti i pageses</label>
                 <br />
-                <input type="text" id="mbiemri" name="mbiemri" />
+                <input
+                  type="number"
+                  id="viti_pageses"
+                  name="viti_pageses"
+                  value={formData.viti_pageses}
+                  onChange={handleChange}
+                />
               </div>
               <div>
-                <label htmlFor="ktg">Kategoria</label> <br />
-                <select name="ktg" id="ktg">
+                <label htmlFor="kategoria_pageses">Kategoria</label> <br />
+                <select
+                  name="kategoria_pageses"
+                  id="kategoria_pageses"
+                  value={formData.kategoria_pageses || '1'}
+                  onChange={handleChange}
+                >
                   <option value="1">Kategoria I</option>
                   <option value="2">Kategoria II</option>
                   <option value="3">Kategoria III</option>
@@ -58,23 +135,41 @@ const AddDialog = forwardRef(({}, ref) => {
               <div>
                 <label htmlFor="rryma">Rryma</label>
                 <br />
-                <input type="number" id="rryma" name="rryma" />
+                <input
+                  type="number"
+                  id="rryma"
+                  name="pagesa_rymes"
+                  value={formData.pagesa_rymes}
+                  onChange={handleChange}
+                />
               </div>
               <div>
                 <label htmlFor="varrezat">Varrezat</label>
                 <br />
-                <input type="number" id="varrezat" name="varrezat" />
+                <input
+                  type="number"
+                  id="varrezat"
+                  name="fondi_varrezave"
+                  value={formData.fondi_varrezave}
+                  onChange={handleChange}
+                />
               </div>
               <div>
                 <label htmlFor="ekstra">Ekstra</label>
                 <br />
-                <input type="number" id="ekstra" name="ekstra" />
+                <input
+                  type="number"
+                  id="ekstra"
+                  name="fondi_xhamine"
+                  value={formData.fondi_xhamine}
+                  onChange={handleChange}
+                />
               </div>
             </div>
           </div>
           <div className="submitBttnContAddD">
             <button>
-                <Icon className="tickIcon" path={mdiCheck} />
+              <Icon className="tickIcon" path={mdiCheck} />
             </button>
           </div>
         </form>

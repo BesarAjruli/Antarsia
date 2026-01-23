@@ -63,7 +63,7 @@ exports.getMembers = async (req, res) => {
         mbiemri ILIKE $2 OR
         kategoria_pageses ILIKE $2
       )
-      ORDER BY id DESC
+      ORDER BY id ASC
       LIMIT $3 OFFSET $4
       `,
       [req.user.id, `%${search}%`, limit, offset]

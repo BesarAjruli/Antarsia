@@ -19,6 +19,26 @@ async function initializeDatabase() {
       );
     `);
 
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS members (
+          id SERIAL PRIMARY KEY,
+          user_id INTEGER NOT NULL,
+          emri TEXT NOT NULL,
+          mbiemri TEXT NOT NULL,
+          viti_pageses TEXT NOT NULL,
+          kategoria_pageses TEXT NOT NULL,
+          pagesa_rymes TEXT,
+        fondi_varrezave TEXT,
+        fondi_xhamine TEXT,
+          created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+          CONSTRAINT fk_user
+              FOREIGN KEY (user_id)
+              REFERENCES users(id)
+              ON DELETE CASCADE
+      );
+    `);
+
     console.log("Users table is ready");
   } catch (err) {
     console.error("Error creating users table:", err);

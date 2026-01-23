@@ -62,9 +62,9 @@ exports.generateMemberPDF = async (req , res) => {
         doc.text(`Mbiemri: ${m.mbiemri}`);
         doc.text(`Kategoria e pageses: ${m.kategoria_pageses}`);
         doc.text(`Viti i pageses: ${m.viti_pageses}`);
-        doc.text(`Pagesa per rrymen: ${m.pagesa_rymes}`);
-        doc.text(`Fondi i varrezave: ${m.fondi_varrezave}`);
-        doc.text(`Fondi ekstra per xhamine: ${m.fondi_xhamine}`);
+        doc.text(`Pagesa per rrymen: ${m.pagesa_rymes} den.`);
+        doc.text(`Fondi i varrezave: ${m.fondi_varrezave} den.`);
+        doc.text(`Fondi ekstra per xhamine: ${m.fondi_xhamine} den.`);
     
         doc.end();
     } catch (err) {

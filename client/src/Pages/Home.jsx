@@ -366,7 +366,6 @@ function Home() {
         });
         const data = await res.json();
         setUser(data);
-        console.log(data)
 
         if (!data || !data?.id) navigate('/login')
       } catch (err) {
@@ -382,7 +381,6 @@ function Home() {
         });
         const data = await res.json();
         setMmbers(data);
-        console.log(data)
       } catch (err) {
         console.log(err);
       }
@@ -464,7 +462,7 @@ function Home() {
                 setmemberId(i)
               }}
             >
-              <td>{element.id}</td>
+              <td>{i}</td>
               <td>
                 {element.emri} {element.mbiemri}
               </td>

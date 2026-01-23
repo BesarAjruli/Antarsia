@@ -4,8 +4,9 @@ import Icon from "@mdi/react";
 import { mdiDelete, mdiPrinter, mdiPencil } from "@mdi/js";
 import { useMediaQuery } from "react-responsive";
 
-const MemberDialog = forwardRef(({data}, ref) => {
+const MemberDialog = forwardRef(({data, id}, ref) => {
   const isMobile = useMediaQuery({ maxWidth: 768 });
+  console.log(id, data[id]?.emri)
 
   return (
     <>
@@ -31,16 +32,16 @@ const MemberDialog = forwardRef(({data}, ref) => {
         <div>
           <div>
             {/*Emri dhe Mbiemri (Besar Ajruli)*/}
-            <span className="dialogEmri">Besar Ajruli</span>
+            <span className="dialogEmri">{data[id]?.emri} {data[id]?.mbiemri}</span>
           </div>
           <div>
             {/*Te dhenat e antarit*/}
             <ul>
-              <li>Viti: </li>
-              <li>Kategoria: </li>
-              <li>Rryma: </li>
-              <li>Varrezat: </li>
-              <li>Shume ekstra: </li>
+              <li>Viti: {data[id]?.viti_pageses}</li>
+              <li>Kategoria: {data[id]?.kategoria_pageses}</li>
+              <li>Rryma: {data[id]?.pagesa_rymes}</li>
+              <li>Varrezat: {data[id]?.fondi_varrezave}</li>
+              <li>Shume ekstra: {data[id]?.fondi_xhamine}</li>
             </ul>
           </div>
           <div>

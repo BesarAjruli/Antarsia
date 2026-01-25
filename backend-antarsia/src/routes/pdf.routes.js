@@ -1,12 +1,12 @@
-const router = require('express').Router();
-const auth = require("../middlewares/auth.middleweare");
-const {
-    generateMembersPDF,
-  generateMemberPDF,
-  generateAllMembersPDF
-} = require("../controllers/pdf.controller")
+const router = require("express").Router();
+const auth = require("../middlewares/auth.middleware"); // ✅ spelling i saktë
 
-router.get("/members", auth , generateAllMembersPDF); //kjo esh per te gjitha pdf
-router.get("/member/:id", auth , generateMemberPDF) //kjo esh per 1 antar
+const { generateAllMembersPDF, generateMemberPDF } = require("../controllers/pdf.controller");
+
+// PDF për të gjithë antarët
+router.get("/members", auth, generateAllMembersPDF);
+
+// PDF për 1 antar
+router.get("/member/:id", auth, generateMemberPDF);
 
 module.exports = router;

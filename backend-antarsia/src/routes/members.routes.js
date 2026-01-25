@@ -1,11 +1,11 @@
 const router = require("express").Router();
-const auth = require("../middlewares/auth.middleweare"); 
+const auth = require("../middlewares/auth.middleware");
 const {
-    createMember,
-    getMembers,
-    getMemberById,
-    updateMember,
-    deleteMember
+  createMember,
+  getMembers,
+  getMemberById,
+  updateMember,
+  deleteMember,
 } = require("../controllers/members.controller");
 const { logout } = require("../controllers/auth.controller");
 
@@ -24,5 +24,5 @@ router.put("/:id", auth, updateMember);
 // Fshirja e një antari
 router.delete("/:id", auth, deleteMember);
 //dil nga app
-router.post("/logout",auth,  logout)
+router.post("/logout", auth, logout);
 module.exports = router;

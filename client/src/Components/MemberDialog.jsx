@@ -84,10 +84,10 @@ const MemberDialog = forwardRef(({ data, id }, ref) => {
             {/*Te dhenat e antarit*/}
             <ul>
               <li>Viti: {data[id]?.viti_pageses}</li>
-              <li>Kategoria: {data[id]?.kategoria_pageses}</li>
-              <li>Rryma: {data[id]?.pagesa_rymes}</li>
-              <li>Varrezat: {data[id]?.fondi_varrezave}</li>
-              <li>Shume ekstra: {data[id]?.fondi_xhamine}</li>
+              <li>Kategoria: {data[id]?.kategoria_pageses} den.</li>
+              <li>Rryma: {data[id]?.pagesa_rymes} den.</li>
+              <li>Varrezat: {data[id]?.fondi_varrezave} den.</li>
+              <li>Shume ekstra: {data[id]?.fondi_xhamine} den.</li>
             </ul>
           </div>
           <div>

@@ -1,6 +1,20 @@
 import "./Header.css";
+import { useNavigate } from "react-router";
 
 function Header() {
+  const nav = useNavigate()
+  const logout = async () => {
+    const req = fetch("http://localhost:8095/api/members/logout", {
+      method: "POST",
+      credentials: "include",
+    });
+
+    if (!req.ok) {
+      console.log("Failed to log you out");
+    }
+
+    nav('/login')
+  };
   return (
     <>
       <div className="header">
@@ -10,7 +24,7 @@ function Header() {
         />
         <h1>Antarsia e fese islame</h1>
 
-        <span>Log Out</span>
+        <span onClick={logout}>Log Out</span>
       </div>
     </>
   );

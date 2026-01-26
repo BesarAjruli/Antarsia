@@ -72,7 +72,7 @@ exports.logout = (req , res) => {
     //fshij cooking qe ruan tokeni
     res.clearCookie("token", {
         httpOnly: true,
-        sameSite: "strict",
+        sameSite: "lax",
     });
     res.json({message: "You are now logged out"})
 }

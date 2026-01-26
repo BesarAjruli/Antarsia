@@ -1,11 +1,13 @@
 import "./MemberDialog.css";
-import { forwardRef } from "react";
+import { forwardRef, useRef } from "react";
 import Icon from "@mdi/react";
 import { mdiDelete, mdiPrinter, mdiPencil } from "@mdi/js";
 import { useMediaQuery } from "react-responsive";
+import AddDialog from "./AddDialog";
 
 const MemberDialog = forwardRef(({ data, id }, ref) => {
   const isMobile = useMediaQuery({ maxWidth: 768 });
+  const addDialog = useRef()
 
   const deleteMember = async () => {
     try {
@@ -111,7 +113,9 @@ const MemberDialog = forwardRef(({ data, id }, ref) => {
                 "Printo"
               )}
             </button>
-            <button style={{ backgroundColor: "green" }}>
+            <button style={{ backgroundColor: "green" }} onClick={() => {
+              addDialog.current.showModal()
+              }}>
               {isMobile ? (
                 <Icon className="memberDlgIcons" path={mdiPencil} />
               ) : (
@@ -121,6 +125,8 @@ const MemberDialog = forwardRef(({ data, id }, ref) => {
           </div>
         </div>
       </dialog>
+
+      <AddDialog ref={addDialog} data={data[id]}/>
     </>
   );
 });

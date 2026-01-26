@@ -529,7 +529,7 @@ function Home() {
       </div>
 
       <MemberDialog ref={memberDialog} data={members} id={memberId}/>
-      <AddDialog ref={addDialog} />
+      <AddDialog ref={addDialog}/>
     </>
   );
 }

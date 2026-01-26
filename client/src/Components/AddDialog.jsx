@@ -2,18 +2,49 @@ import { forwardRef } from "react";
 import "./AddDialog.css";
 import Icon from "@mdi/react";
 import { mdiCheck } from "@mdi/js";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-const AddDialog = forwardRef(({}, ref) => {
+const AddDialog = forwardRef(({ data }, ref) => {
+  const editing = Boolean(data?.id);
+
   const [formData, setFormData] = useState({
-    emri: "",
-    mbiemri: "",
-    kategoria_pageses: "1",
-    viti_pageses: "",
-    pagesa_rymes: "",
-    fondi_varrezave: "",
-    fondi_xhamine: "",
-  });
+      emri: "",
+      mbiemri: "",
+      kategoria_pageses: "1",
+      viti_pageses: "",
+      pagesa_rymes: "",
+      fondi_varrezave: "",
+      fondi_xhamine: "",
+    });
+
+  useEffect(() => {
+    if (!data) {
+    setFormData({
+      emri: "",
+      mbiemri: "",
+      kategoria_pageses: "1",
+      viti_pageses: "",
+      pagesa_rymes: "",
+      fondi_varrezave: "",
+      fondi_xhamine: "",
+    });
+    setEmriMbiemri("");
+
+    return
+  }
+
+    setFormData({
+      emri: data?.emri,
+      mbiemri: data?.mbiemri,
+      kategoria_pageses: data.kategoria_pageses,
+      viti_pageses: data.viti_pageses,
+      pagesa_rymes: data.pagesa_rymes,
+      fondi_varrezave: data.fondi_varrezave,
+      fondi_xhamine: data.fondi_xhamine,
+    })
+
+    setEmriMbiemri(`${data.emri ?? ""} ${data.mbiemri ?? ""}`.trim());
+  }, [data]);
 
   //Per ta ndare emrin dhe mbiemrin
   const [emriMbiemri, setEmriMbiemri] = useState("");
@@ -28,9 +59,12 @@ const AddDialog = forwardRef(({}, ref) => {
   const submit = async (e) => {
     e.preventDefault();
 
+    const url = editing ? `http://localhost:8095/api/members/${data?.id}` : "http://localhost:8095/api/members/"
+    const method = editing ? "PUT" : "POST"
+
     try {
-      const res = await fetch("http://localhost:8095/api/members/", {
-        method: "POST",
+      const res = await fetch(url, {
+        method,
         headers: {
           "Content-Type": "application/json",
         },
@@ -90,6 +124,7 @@ const AddDialog = forwardRef(({}, ref) => {
                   type="text"
                   id="emriMbiemri"
                   name="emri"
+                  required
                   value={emriMbiemri}
                   onChange={(e) => {
                     const value = e.target.value;
@@ -111,6 +146,7 @@ const AddDialog = forwardRef(({}, ref) => {
                   type="number"
                   id="viti_pageses"
                   name="viti_pageses"
+                  required
                   value={formData.viti_pageses}
                   onChange={handleChange}
                 />
@@ -120,7 +156,8 @@ const AddDialog = forwardRef(({}, ref) => {
                 <select
                   name="kategoria_pageses"
                   id="kategoria_pageses"
-                  value={formData.kategoria_pageses || '1'}
+                  required
+                  value={formData.kategoria_pageses || "1"}
                   onChange={handleChange}
                 >
                   <option value="1">Kategoria I</option>
@@ -139,6 +176,7 @@ const AddDialog = forwardRef(({}, ref) => {
                   type="number"
                   id="rryma"
                   name="pagesa_rymes"
+                  required
                   value={formData.pagesa_rymes}
                   onChange={handleChange}
                 />
@@ -150,6 +188,7 @@ const AddDialog = forwardRef(({}, ref) => {
                   type="number"
                   id="varrezat"
                   name="fondi_varrezave"
+                  required
                   value={formData.fondi_varrezave}
                   onChange={handleChange}
                 />
@@ -161,6 +200,7 @@ const AddDialog = forwardRef(({}, ref) => {
                   type="number"
                   id="ekstra"
                   name="fondi_xhamine"
+                  required
                   value={formData.fondi_xhamine}
                   onChange={handleChange}
                 />

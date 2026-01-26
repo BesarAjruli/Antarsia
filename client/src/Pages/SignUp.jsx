@@ -1,7 +1,10 @@
 import { useState } from "react";
+import { useNavigate } from "react-router"
 import "./Login.css";
 
 function SignUp() {
+  const nav = useNavigate()
+  
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -35,7 +38,7 @@ function SignUp() {
       }
 
       alert("Registration successful");
-      console.log("User:", data);
+      nav('/login')
     } catch (err) {
       console.error("Signup error:", err);
       alert("Server error");
@@ -88,6 +91,7 @@ function SignUp() {
           </div>
           <button type="submit">Submit</button>
         </form>
+        <span onClick={() => nav('/login')}>Login</span>
       </div>
     </>
   );

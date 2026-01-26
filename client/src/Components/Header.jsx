@@ -9,6 +9,8 @@ function Header() {
           alt="logo e antarsise"
         />
         <h1>Antarsia e fese islame</h1>
+
+        <span>Log Out</span>
       </div>
     </>
   );

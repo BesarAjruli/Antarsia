@@ -36,8 +36,6 @@ function Login() {
         return;
       }
       
-      console.log("Response:", data);
-
       nav('/')
     } catch (err) {
       console.error("Signup error:", err);
@@ -79,6 +77,7 @@ function Login() {
           </div>
           <button type="submit">Submit</button>
         </form>
+        <span onClick={() => nav('/signup')}>Sign Up</span>
       </div>
     </>
   );

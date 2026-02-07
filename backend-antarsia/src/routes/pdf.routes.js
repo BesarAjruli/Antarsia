@@ -1,6 +1,5 @@
 const router = require("express").Router();
-const auth = require("../middlewares/auth.middleware"); // ✅ spelling i saktë
-
+const auth = require("../middlewares/auth.middleware");
 const { generateAllMembersPDF, generateMemberPDF } = require("../controllers/pdf.controller");
 
 // PDF për të gjithë antarët

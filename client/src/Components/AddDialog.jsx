@@ -59,7 +59,7 @@ const AddDialog = forwardRef(({ data }, ref) => {
   const submit = async (e) => {
     e.preventDefault();
 
-    const url = editing ? `http://localhost:8095/api/members/${data?.id}` : "http://localhost:8095/api/members/"
+    const url = editing ? `/api/members/${data?.id}` : "/api/members/"
     const method = editing ? "PUT" : "POST"
 
     try {

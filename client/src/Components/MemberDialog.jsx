@@ -11,7 +11,7 @@ const MemberDialog = forwardRef(({ data, id }, ref) => {
 
   const deleteMember = async () => {
     try {
-      await fetch(`http://localhost:8095/api/members/${data[id].id}`, {
+      await fetch(`/api/members/${data[id].id}`, {
         method: "DELETE",
         credentials: "include",
       });
@@ -25,7 +25,7 @@ const MemberDialog = forwardRef(({ data, id }, ref) => {
   const printMember = async () => {
     try {
       const response = await fetch(
-        `http://localhost:8095/api/pdf/member/${data[id].id}`,
+        `/api/pdf/member/${data[id].id}`,
         {
           credentials: "include",
         },

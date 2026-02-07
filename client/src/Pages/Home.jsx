@@ -47,7 +47,7 @@ function Home() {
   useEffect(() => {
     const getUser = async () => {
       try {
-        const res = await fetch("http://localhost:8095/api/auth/user", {
+        const res = await fetch("/api/auth/user", {
           method: "GET",
           credentials: "include",
         });
@@ -62,7 +62,7 @@ function Home() {
 
     const getMembers = async () => {
       try {
-        const res = await fetch("http://localhost:8095/api/members/", {
+        const res = await fetch("/api/members/", {
           method: "GET",
           credentials: "include",
         });
@@ -80,7 +80,7 @@ function Home() {
   const printList = async () => {
     try {
       const response = await fetch(
-        `http://localhost:8095/api/pdf/members`,
+        `/api/pdf/members`,
         {
           credentials: "include",
         },

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router";
 function Header() {
   const nav = useNavigate()
   const logout = async () => {
-    const req = fetch("http://localhost:8095/api/members/logout", {
+    const req = fetch("/api/members/logout", {
       method: "POST",
       credentials: "include",
     });

@@ -1,4 +1,4 @@
-import Header from "../Components/Header";
+import Header from "../Components/Header"
 import Banner from "../Components/Banner";
 import Add from "../Components/Add";
 import MemberDialog from "../Components/MemberDialog";

@@ -6,7 +6,7 @@ export function Header() {
 
   const logout = async () => {
     try {
-      const res = await fetch("/api/members/logout", {
+      const res = await fetch("/api/auth/logout", {
         method: "POST",
         credentials: "include",
       });

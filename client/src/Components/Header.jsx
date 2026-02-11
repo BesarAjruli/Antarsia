@@ -30,7 +30,7 @@ export function Header() {
         <h1>Antarsia e fese islame</h1>
 
       {/* Butoni Logout */}
-      <button className="button">Log Out</button>
+      <button className="button" onClick={logout}>Log Out</button>
     </div>
   );
 }

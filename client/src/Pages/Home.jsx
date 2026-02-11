@@ -52,9 +52,11 @@ function Home() {
           credentials: "include",
         });
         const data = await res.json();
-        setUser(data);
 
         if (!data || !data?.id) navigate('/login')
+
+        setUser(data);
+
       } catch (err) {
         console.log('Login failed');
       }

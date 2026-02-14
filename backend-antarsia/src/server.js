@@ -1,10 +1,12 @@
-require("dotenv").config();   
+require("dotenv").config();
 
 const app = require("./app");
 const PORT = process.env.PORT || 8095;
 
-// routes PDF
-const pdfRoutes = require("./routes/pdf.routes"); 
+const membersRoutes = require("./routes/members.routes");
+const pdfRoutes = require("./routes/pdf.routes");
+
+app.use("/api/members", membersRoutes);
 app.use("/api/pdf", pdfRoutes);
 
 app.listen(PORT, () => {

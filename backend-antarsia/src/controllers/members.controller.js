@@ -37,15 +37,20 @@ exports.createMember = async (req, res) => {
         pagesa_rymes,
         fondi_varrezave,
         fondi_xhamine,
-        req.user.id
+        1 // <-- fiks user_id për test
       ]
     );
 
     res.status(201).json(result.rows[0]);
   } catch (err) {
-    res.status(500).json({ message: "Error creating member" });
+    console.error("CREATE MEMBER ERROR:", err);
+    res.status(500).json({ 
+      message: "Error creating member",
+      detail: err.message 
+    });
   }
 };
+
 
 // 📄 GET ALL MEMBERS (vetëm të user-it)
 exports.getMembers = async (req, res) => {

@@ -4,7 +4,11 @@ const pool = require("../config/db");
 // PDF për të gjithë antarët
 exports.generateAllMembersPDF = async (req, res) => {
     try {
-        const result = await pool.query("SELECT * FROM members ORDER BY emri ASC, mbiemri ASC");
+        const result = await pool.query(
+            "SELECT * FROM members WHERE user_id = $1 ORDER BY emri ASC, mbiemri ASC",
+            [req.user.id]
+        );
+        
 
         const doc = new PDFDocument({ margin: 30, size: "A4" });
 
@@ -80,7 +84,11 @@ exports.generateMemberPDF = async (req, res) => {
     const { id } = req.params;
 
     try {
-        const result = await pool.query("SELECT * FROM members WHERE id = $1", [id]);
+        const result = await pool.query(
+            "SELECT * FROM members WHERE id = $1 AND user_id = $2",
+            [id, req.user.id]
+        );
+        
 
         if (result.rows.length === 0) {
             return res.status(404).json({ message: "Member not found" });

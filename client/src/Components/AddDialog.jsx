@@ -194,7 +194,7 @@ const AddDialog = forwardRef(({ data }, ref) => {
                 />
               </div>
               <div>
-                <label htmlFor="ekstra">Ekstra</label>
+                <label htmlFor="ekstra">Fondi</label>
                 <br />
                 <input
                   type="number"

@@ -37,7 +37,7 @@ exports.createMember = async (req, res) => {
         pagesa_rymes,
         fondi_varrezave,
         fondi_xhamine,
-        1 // <-- fiks user_id për test
+        req.user.id // <-- fiks user_id për test
       ]
     );
 

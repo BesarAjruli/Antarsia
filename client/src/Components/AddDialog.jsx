@@ -176,6 +176,7 @@ const AddDialog = forwardRef(({ data }, ref) => {
                   type="number"
                   id="rryma"
                   name="pagesa_rymes"
+                  placeholder="Ne den."
                   required
                   value={formData.pagesa_rymes}
                   onChange={handleChange}
@@ -188,18 +189,20 @@ const AddDialog = forwardRef(({ data }, ref) => {
                   type="number"
                   id="varrezat"
                   name="fondi_varrezave"
+                  placeholder="Ne den."
                   required
                   value={formData.fondi_varrezave}
                   onChange={handleChange}
                 />
               </div>
               <div>
-                <label htmlFor="ekstra">Ekstra</label>
+                <label htmlFor="ekstra">Fondi</label>
                 <br />
                 <input
                   type="number"
                   id="ekstra"
                   name="fondi_xhamine"
+                  placeholder="Ne den."
                   required
                   value={formData.fondi_xhamine}
                   onChange={handleChange}

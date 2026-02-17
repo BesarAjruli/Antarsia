@@ -32,7 +32,7 @@ exports.generateAllMembersPDF = async (req, res) => {
             { header: "Viti", width: 70 },
             { header: "Rryma", width: 70 },
             { header: "Varreza", width: 70 },
-            { header: "Ekstra", width: 70 },
+            { header: "Fondi", width: 70 },
         ];
 
         // Draw headers
@@ -108,7 +108,7 @@ exports.generateMemberPDF = async (req, res) => {
         doc.text(`Viti: ${m.viti_pageses}`);
         doc.text(`Rryma: ${m.pagesa_rymes}`);
         doc.text(`Fondi varrezave: ${m.fondi_varrezave}`);
-        doc.text(`Fondi xhamine: ${m.fondi_xhamine}`);
+        doc.text(`Fondi xhamise: ${m.fondi_xhamine}`);
 
         doc.end();
     } catch (err) {

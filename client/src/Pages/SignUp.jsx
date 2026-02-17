@@ -54,7 +54,7 @@ function SignUp() {
         />
         <form method="post" onSubmit={submit}>
           <div>
-            <label htmlFor="name">Name:</label>
+            <label htmlFor="name">Emri i Xhamise:</label>
             <br />
             <input
               type="text"

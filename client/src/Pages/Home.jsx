@@ -69,6 +69,7 @@ function Home() {
           credentials: "include",
         });
         const data = await res.json();
+        console.log(data)
         setMmbers(data);
       } catch (err) {
         console.log(err);
